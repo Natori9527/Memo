@@ -1,1 +1,19 @@
 // Sybase Commmand
+Convert HKT to GMT
+select convert(varchar(8),DATEADD(hh, -8,'20161107'),112) + ' ' + convert(varchar(8),DATEADD(hh, -8,'20161107'),20)
+
+declare @temp_datetime datetime
+select @temp_datetime = DATEADD(hh,-8,convert(char(8),20161108))
+select convert(char(8),@temp_datetime ,112) + ' ' + convert(char(8),@temp_datetime ,108)
+
+-                 
+20161106 16:00:00 
+
+
+http://infocenter.sybase.com/help/index.jsp?topic=/com.sybase.infocenter.dc36271.1570/html/blocks/X41864.htm
+
+sp_help
+Report information about a database object
+
+sp_helptext  
+can check details of procedure
