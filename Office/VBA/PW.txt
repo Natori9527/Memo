@@ -1,0 +1,11 @@
+If you have a spreadsheet where the VBA code is password locked:
+
+1) Open the sheet in Notepad++ or another text editor.
+2) Search for DPB in the file.
+3) Replace DPB with DPx
+4) Save File
+5) Open file in Excel
+6) Go into VBA - it will give error popups - click through
+7) Go to Tools/VBA Project Properties Protection tab.
+8) Type in new password
+9) Voila, you can view the VBA code
