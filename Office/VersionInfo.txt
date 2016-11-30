@@ -8,6 +8,11 @@ Office12 -> Office2007
 Office14 -> Office2010
 Office15 -> Office2013
 
+FileFormat
+51 = xlOpenXMLWorkbook (without macro's in 2007-2013, xlsx)
+52 = xlOpenXMLWorkbookMacroEnabled (with or without macro's in 2007-2013, xlsm)
+50 = xlExcel12 (Excel Binary Workbook in 2007-2013 with or without macro's, xlsb)
+56 = xlExcel8 (97-2003 format in Excel 2007-2013, xls)
 
 Excel – a history of rows and columns
 	              Max. Rows	  Max. Columns
