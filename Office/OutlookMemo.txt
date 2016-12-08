@@ -1,0 +1,5 @@
+[setting]trust center->program access
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\15.0\Outlook\Security\ObjectModelGuard
+0 warning where necessary
+1 always warning
+2 never warning
