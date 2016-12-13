@@ -1,0 +1,73 @@
+SendKeys Method
+
+Description
+
+The SendKeys method is used to send keystrokes to the currently active window as if they where typed from the keyboard.
+
+object.SendKeys Keystrokes
+
+Single alphanumeric keystrokes can simply be specified using a string representation of the character required. For example, to send the letter S the command would be object.SendKeys "S".
+
+To send multiple characters combine them into one string. For example, to send A, B and C the command would be object.SendKeys "ABC".
+
+The plus sign "+", caret "^", percent sign "%", tilde "~", and parentheses "()" all have special meanings and must be enclosed within braces "{}". Square brackets "[]" must also be enclosed within braces although they have no special meaning. To specify brace characters themselves, use "{{}" and "{}}".
+
+Below is a table of characters that can not be directly represent by a keyboard character to use one of these, specify the appropriate Code.
+
+<%font_body%>Key	<%font_body%>Code
+<%font_body%>Backspace	<%font_body%>{BACKSPACE}, {BKSP} or {BS}
+<%font_body%>Break	<%font_body%>{BREAK}
+<%font_body%>Caps Lock	<%font_body%>{CAPSLOCK}
+<%font_body%>Delete	<%font_body%>{DELETE} or {DEL}
+<%font_body%>Down Arrow	<%font_body%>{DOWN}
+<%font_body%>End	<%font_body%>{END}
+<%font_body%>Enter	<%font_body%>{ENTER} or ~
+<%font_body%>Escape	<%font_body%>{ESC}
+<%font_body%>Help	<%font_body%>{HELP}
+<%font_body%>Home	<%font_body%>{HOME}
+<%font_body%>Insert	<%font_body%>{INSERT} or {INS}
+<%font_body%>Left Arrow	<%font_body%>{LEFT}
+<%font_body%>Num Lock	<%font_body%>{NUMLOCK}
+<%font_body%>Page Down	<%font_body%>{PGDN}
+<%font_body%>Page Up	<%font_body%>{PGUP}
+<%font_body%>Print Screen	<%font_body%>{PRTSC}
+<%font_body%>Right Arrow	<%font_body%>{RIGHT}
+<%font_body%>Scroll Lock	<%font_body%>{SCROLLLOCK}
+<%font_body%>Tab	<%font_body%>{TAB}
+<%font_body%>Up Arrow	<%font_body%>{UP}
+<%font_body%>F1	<%font_body%>{F1}
+<%font_body%>F2	<%font_body%>{F2}
+<%font_body%>F3	<%font_body%>{F3}
+<%font_body%>F4	<%font_body%>{F4}
+<%font_body%>F5	<%font_body%>{F5}
+<%font_body%>F6	<%font_body%>{F6}
+<%font_body%>F7	<%font_body%>{F7}
+<%font_body%>F8	<%font_body%>{F8}
+<%font_body%>F9	<%font_body%>{F9}
+<%font_body%>F10	<%font_body%>{F10}
+<%font_body%>F11	<%font_body%>{F11}
+<%font_body%>F12	<%font_body%>{F12}
+<%font_body%>F13	<%font_body%>{F13}
+<%font_body%>F14	<%font_body%>{F14}
+<%font_body%>F15	<%font_body%>{F15}
+<%font_body%>F16	<%font_body%>{F16}
+To specify characters combinations use the following codes:
+
+<%font_body%>Key	<%font_body%>Code
+<%font_body%>Alt	<%font_body%>%
+<%font_body%>Ctrl	<%font_body%>^
+<%font_body%>Shift Lock	<%font_body%>+
+For example to specify CTRL and C, the code would be object.SendKeys "^C" and for SHIFT F5 object.SendKeys "+{F5}". To specify multiple combination sets such as ALT A Z, you use parentheses, for example, object.SendKeys "%(AZ)".
+Example
+
+'VBScript Example
+Set WshShell = WScript.CreateObject("WScript.Shell")
+
+WshShell.Run "%windir%\notepad.exe"
+WshShell.AppActivate "Notepad"
+
+WshShell.SendKeys "Hello World!"
+WshShell.SendKeys "{ENTER}"
+WshShell.SendKeys "abc"
+WshShell.SendKeys "{CAPSLOCK}"
+WshShell.SendKeys "def"
