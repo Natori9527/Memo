@@ -1,0 +1,10 @@
+1.chown：更改文件属主，也可以同时更改文件属组
+2.chmod：更改文件9个属性
+
+d rwx rwx rwx
+
+r:4
+w:2
+x:1
+
+chmod 770 file  : assign "rwx rwx ---" to file
