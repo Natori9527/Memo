@@ -4,3 +4,7 @@
 
 !Tcl Tutorial
 https://www.tcl.tk/man/tcl8.5/tutorial/tcltutorial.html
+
+!Turorial
+https://www.tutorialspoint.com/index.htm
+http://www.runoob.com
