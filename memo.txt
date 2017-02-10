@@ -8,3 +8,12 @@ https://www.tcl.tk/man/tcl8.5/tutorial/tcltutorial.html
 !Turorial
 https://www.tutorialspoint.com/index.htm
 http://www.runoob.com
+
+!putty font set
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\Default%20Settings]
+"Font"="Courier New"
+"FontIsBold"=dword:00000000
+"FontCharSet"=dword:00000000
+"FontHeight"=dword:0000000e
