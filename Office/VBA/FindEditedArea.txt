@@ -1,0 +1,4 @@
+'Find last row of edited area
+intRow = sheet1.Cells.Find("*", x2.Range("A1"), -4163, 1, 1, 2, False, False, False).Row
+
+Cells.Find(What:="*", SearchOrder:=xlRows, SearchDirection:=xlPrevious, LookIn:=xlValues).Row
