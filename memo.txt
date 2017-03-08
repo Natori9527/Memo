@@ -20,3 +20,9 @@ Windows Registry Editor Version 5.00
 "FontIsBold"=dword:00000000
 "FontCharSet"=dword:00000000
 "FontHeight"=dword:0000000e
+
+!English share
+www.plainenglish.co.uk
+www.oed.com
+http://owl.english.purdue.edu/lab/owl/factsheet.html
+http://thesaurus.reference.com
