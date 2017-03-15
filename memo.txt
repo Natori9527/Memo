@@ -26,3 +26,7 @@ www.plainenglish.co.uk
 www.oed.com
 http://owl.english.purdue.edu/lab/owl/factsheet.html
 http://thesaurus.reference.com
+
+
+!Registry search
+REG QUERY HKEY_CURRENT_USER /f "HSBCFTS_TXN_IN.dll" /t REG_SZ /c /s
