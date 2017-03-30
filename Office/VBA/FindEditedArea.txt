@@ -2,3 +2,20 @@
 intRow = sheet1.Cells.Find("*", x2.Range("A1"), -4163, 1, 1, 2, False, False, False).Row
 
 Cells.Find(What:="*", SearchOrder:=xlRows, SearchDirection:=xlPrevious, LookIn:=xlValues).Row
+
+
+'Ctrl + Shift + End
+  LastRow = sht.Cells(sht.Rows.Count, "A").End(xlUp).Row
+
+'Using UsedRange
+  sht.UsedRange 'Refresh UsedRange
+  LastRow = sht.UsedRange.Rows(sht.UsedRange.Rows.Count).Row
+
+'Using Table Range
+  LastRow = sht.ListObjects("Table1").Range.Rows.Count
+
+'Using Named Range
+  LastRow = sht.Range("MyNamedRange").Rows.Count
+
+'Ctrl + Shift + Down (Range should be first cell in data set)
+  LastRow = sht.Range("A1").CurrentRegion.Rows.Count
