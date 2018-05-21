@@ -8,3 +8,10 @@ w:2
 x:1
 
 chmod 770 file  : assign "rwx rwx ---" to file
+
+file encoding
+1.vim
+ :set fileencoding
+2.iconv
+
+ascii is a subset of utf-8
