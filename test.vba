@@ -48,7 +48,7 @@ Do While sourceSht.Cells(sourceShtSR, sourceC1) <> ""
     targetShtSR = 1
     Do While targetSht.Cells(targetShtSR, targetC1) <> ""
     
-        If (Val(sourceSht.Cells(sourceShtSR, sourceC1).Value) = Val(targetSht.Cells(targetShtSR, targetC1).Value)) And _
+    If (Val(sourceSht.Cells(sourceShtSR, sourceC1).Value × 10) = Val(targetSht.Cells(targetShtSR, targetC1).Value)) And _
            (Val(sourceSht.Cells(sourceShtSR, sourceC2).Value) = Val(targetSht.Cells(targetShtSR, targetC2).Value)) Then
            
             If sourceSht.Cells(sourceShtSR, resultC).Value <> "" Then
