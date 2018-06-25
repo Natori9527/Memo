@@ -13,7 +13,8 @@ Dim sourceSht, targetSht As Worksheet
 Set sourceSht = Sheets.item("Sheet1")
 'target sheet
 Set targetSht = Sheets.item("Sheet2")
-Dim commentR, sourceShtSR, targetShtSR, sourceC1, sourceC2, targetC1, targetC2, recultC, unMatchCnt, idx
+Dim commentR, sourceShtSR, targetShtSR, sourceC1, sourceC2, targetC1, _
+    targetC2, recultC, unMatchCnt, targetRCount, idx, unMatchR
 'comment row number
 commentR = 1
 'Source Sheet start row number
@@ -30,8 +31,12 @@ targetC2 = 11
 resultC = 17
 'Target Sheet start row number
 targetShtSR = 1
+'result unmatch row
+unMatchR = 1
+'Target Sheet row count
+targetRCount = targetSht.Cells.Find("*", targetSht.Range("A1"), -4163, 1, 1, 2, False, False, False).Row + 1 - targetShtSR
 'target Sheet unmatch record count ini
-unMatchCnt = targetSht.Cells.Find("*", targetSht.Range("A1"), -4163, 1, 1, 2, False, False, False).Row + 1 - targetShtSR
+unMatchCnt = targetRCount
 For idx = targetShtSR To unMatchCnt
     ucopDic.Add idx, idx
 Next
@@ -90,17 +95,23 @@ Loop
 
 sourceSht.Cells(1, resultC + 1).Value = "Unmatched count:" & unMatchCnt
 
-Dim comment
+
+sourceSht.Range("R" & unMatchR + 1 & ":R" & targetRCount).Clear
+
+'Dim comment
+idx = unMatchR + 1
 For Each strKey In ucopDic.Keys()
-    comment = comment & "Row:" & ucopDic(strKey) & vbLf
+'    comment = comment & "Row:" & ucopDic(strKey) & vbLf
+    sourceSht.Cells(idx, resultC + 1).Value = "Row:" & ucopDic(strKey)
+    idx = idx + 1
 Next
 
-If Not sourceSht.Cells(commentR, resultC + 1).comment Is Nothing Then
-    sourceSht.Cells(commentR, resultC + 1).comment.Delete
-End If
+'If Not sourceSht.Cells(commentR, resultC + 1).comment Is Nothing Then
+'    sourceSht.Cells(commentR, resultC + 1).comment.Delete
+'End If
 
-sourceSht.Cells(commentR, resultC + 1).AddComment comment
-sourceSht.Cells(commentR, resultC + 1).comment.Shape.Height = 10 + 11 * unMatchCnt
+'sourceSht.Cells(commentR, resultC + 1).AddComment comment
+'sourceSht.Cells(commentR, resultC + 1).comment.Shape.Height = 10 + 11 * unMatchCnt
 
 MsgBox ("Completed!")
 Exit Sub
