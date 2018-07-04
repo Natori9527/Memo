@@ -1,0 +1,10 @@
+Private Sub Application_ItemSend(ByVal Item As Object, Cancel As Boolean)
+Dim xPrompt As String
+Dim xOkOrCancel As Integer
+On Error Resume Next
+xPrompt = "Do you want to continue sending the email?"
+xOkOrCancel = MsgBox(xPrompt, vbOKCancel)
+If xOkOrCancel <> vbOK Then
+    Cancel = True
+End If
+End Sub
