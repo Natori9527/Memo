@@ -1,0 +1,48 @@
+'Excel
+'range copy
+        Set XLWS = XLWB.ActiveSheet
+        XLWS.Range("1:28").Copy
+        XLWB.ActiveSheet.Paste Destination:=XLWB.Worksheets(SheetMei).Range("29:56")
+        
+' print area release
+    With XLWB.ActiveSheet.PageSetup
+        .PrintTitleRows = ""
+        .PrintTitleColumns = ""
+    End With
+    
+    'print area page brakes
+    With XLWB.ActiveSheet
+        .HPageBreaks.ADD .Range("A29:A29")
+    End With
+'print area set        
+XLWB.ActiveSheet.PageSetup.PrintArea = "A1:AC56"
+        
+        'Sheet copy
+        XLApp.ActiveWorkbook.Worksheets(1).Copy After:=XLWB.Worksheets(1)
+        XLWB.ActiveSheet.Name = SheetMei & "_1"
+        
+        
+Function CpyTemp(strF As String, strFol As String, xDate As String) As String
+On Error GoTo Err_CpyTemp
+
+    Dim objFSO As Object
+    Dim InFL     As String
+    Dim OutFL     As String
+    Dim str1        As String
+    
+    If Right(CurrentProject.Path, 1) = "\" Then
+        InFL = CurrentProject.Path & strF
+    Else
+        InFL = CurrentProject.Path & "\" & strF
+    End If
+    
+    OutFL = strFol & "\" & str1 & "_" & xDate & "_001.xlsx"
+    
+    FileCopy InFL, OutFL
+        
+    CpyTemp = OutFL
+    Exit Function
+    
+Err_CpyTemp:
+    msgbox ""
+End Function
