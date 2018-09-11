@@ -1,0 +1,3 @@
+
+ExcelAPP.ScreenUpdating = False
+'PS if there is a shape like QR code,this will not work
