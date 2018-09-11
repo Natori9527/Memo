@@ -1,0 +1,12 @@
+                    'Create QR code
+                    'Sht  work sheet
+                    With Sht.Range("A1")
+                        With XLWS.OLEObjects.ADD(ClassType:="BARCODE.BarCodeCtrl.1", _
+                                    Link:=False, DisplayAsIcon:=False, Left:=.Left, Top:=.Top)
+                        .LinkedCell = "A1"
+                        .Width = 75
+                        .Height = 75
+                        .Object.Style = 11 'QR code
+                        .Object.SubStyle = 0
+                        End With
+                    End With
