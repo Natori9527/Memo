@@ -1,0 +1,117 @@
+Sub QR15_Sample()
+'QRコード15mm×15mmサイズ
+ 
+  Dim Str_Code As Variant
+  Dim Start_Add, Col As String
+  Dim Row_Pos, Col_Num, LastRow, Count As Long
+  Dim QR_Data() As String
+  Dim i As Integer
+   
+  '**QRコード化するCodeデータ読み込み**
+   
+  For Each Str_Code In Range("A:A")
+       If Str_Code = "Code" Then
+            Row_Pos = Str_Code.Row
+            Start_Add = Str_Code.Address(True, False)
+            Col = Left(Start_Add, InStr(Start_Add, "$") - 1)
+            Col_Num = Asc(Col) - 64  '列番号アルファベットを数値化
+            LastRow = Cells(Rows.Count, Col_Num).End(xlUp).Row  'データ入力最終行
+            Count = LastRow - Row_Pos 'データ数
+        End If
+   Next
+ 
+   ReDim QR_Data(1 To Count) As String
+ 
+   'QRコードへのリンクセル設定用にデータ入力セルのアドレスを取得
+   For i = 1 To Count
+     QR_Data(i) = Cells(Row_Pos + i, Col_Num).Address(RowAbsolute:=False, ColumnAbsolute:=False)
+   Next i
+    
+   '**QRコード貼付けセルのサイズ指定処理**
+ 
+    'このサイズ設定はQRコード化する内容により適宜調整
+    Rows(Row_Pos + 1 & ":" & LastRow).RowHeight = 80
+    Columns(Col_Num + 1).ColumnWidth = 15
+     
+       
+    '**QRコードコントロールプロパティ設定**
+     
+    'プロパティについては以下URLのMSDN参照
+    'https://msdn.microsoft.com/ja-jp/library/cc427149.aspx
+     
+    Const QR_Style As Integer = 11
+    'スタイル
+    '0: UPC-A, 1: UPC-E, 2: JAN-13, 3: JAN-8, 4: Casecode, 5: NW-7,
+    '6: Code-39, 7: Code-128, 8: U.S. Postnet, 9: U.S. Postal FIM, 10: 郵便物の表示用途（日本）
+    '11: QRコード
+     
+    Const QR_Substyle As Integer = 0
+    'サブスタイル (下記URL参照)
+    'http://msdn.microsoft.com/ja-jp/library/cc427156.aspx
+     
+    Const QR_Validation As Integer = 2
+    'データの確認
+    '0: 確認無し, 1: 無効なら計算を補正, 2: 無効なら非表示
+    'Code39/NW-7の場合、「1」でスタート/ストップ文字(*)を自動的に追加
+     
+    Const QR_LineWeight As Integer = 3
+    '線の太さ
+    '0: 極細線, 1:細線, 2:中細線, 3:標準, 4:中太線, 5: 太線, 6:極太線, 7:超極太線
+     
+    Const QR_Direction As Integer = 0
+    'QRコードの表示方向
+    '0: 0度, 1: 90度, 2: 180度, 3: 270度　[0]が標準
+     
+    Const QR_ShowData As Integer = 0
+    'データの表示
+    '0: 表示無し, 1:表示有り
+     
+    Const QR_ForeColor As Long = rgbBlack
+    '前景色の指定
+     
+    Const QR_BackColor As Long = rgbWhite
+    '背景色の指定
+     
+    'rgbBlackなどの色定数は以下URLのMSDN参照
+    'https://msdn.microsoft.com/ja-jp/VBA/Excel-VBA/articles/xlrgbcolor-enumeration-excel
+     
+   '**QRコード化の処理＊＊
+    
+    Dim QR_OLE_Obj As OLEObject
+    Dim QR_Obj As BARCODELib.BarCodeCtrl
+       
+    For i = 1 To Count
+        'QRコードサイズ、及び貼り付ける位置の指定
+        '上で設定したセルサイズに対し、枠内中央とする為にTop/Leftは+5、Height/Widthは-10
+        With Cells(i + Row_Pos, Col_Num + 1)
+           ActiveSheet.OLEObjects.Add(ClassType:="BARCODE.BarCodeCtrl.1", Link:=False, DisplayAsIcon:=False, _
+            Top:=.Top + 10, Left:=.Left + 10, Height:=.Height - 20, Width:=.Width - 20).Select
+        End With
+                      
+        Set QR_OLE_Obj = Selection
+        Set QR_Obj = QR_OLE_Obj.Object
+          
+        'QRコードにプロパティ設定
+        With QR_Obj
+          .Style = QR_Style
+          .SubStyle = QR_Substyle
+          .Validation = QR_Validation
+          .LineWeight = QR_LineWeight
+          .Direction = QR_Direction
+          .ShowData = QR_ShowData
+          .ForeColor = QR_ForeColor
+          .BackColor = QR_BackColor
+          .Refresh
+         End With
+          
+         'リンクするセルアドレスを指定
+         With QR_OLE_Obj
+           .Visible = False
+           .LinkedCell = Range(QR_Data(i)).Address(RowAbsolute:=False, ColumnAbsolute:=False, _
+            ReferenceStyle:=Application.ReferenceStyle)
+           .Visible = True
+         End With
+                     
+     Next i
+    
+End Sub
