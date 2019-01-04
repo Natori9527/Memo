@@ -1,0 +1,13 @@
+run sql file by pgAdmin
+
+bat file in windows:
+
+cd [psql path](C:\Program Files (x86)\pgAdmin 4\v3\runtime)
+set PGPASSWORD=password
+echo %PGPASSWORD%
+#for login
+psql -U [username] -h [host] -d [db_name] 
+
+#run sql file
+
+psql -U [username] -h [host] -d [db_name] <[filepath]
