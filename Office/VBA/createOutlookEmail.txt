@@ -1,0 +1,50 @@
+Sub test()
+
+Dim OutApp As Object
+Dim OutMail As Object
+
+Set OutApp = CreateObject("Outlook.Application")
+Set OutMail = OutApp.createitem(0)
+
+
+msg1 = "<span style='background-color:#07c;'>&nbsp</span>&nbsp<span style='font-size:20px;'><b>bulabula</b></span>"
+msg1 = msg1 & "<div style='margin-top:5px;'><table width='900' border='1' bordercolor='gray' style='border-collapse: collapse;border-style:solid;'>"
+msg1 = msg1 & "<tr>"
+msg1 = msg1 & "<th>"
+msg1 = msg1 & "Title1"
+msg1 = msg1 & "</th>"
+msg1 = msg1 & "<th>"
+msg1 = msg1 & "Title2"
+msg1 = msg1 & "</th>"
+msg1 = msg1 & "<th>"
+msg1 = msg1 & "Title3"
+msg1 = msg1 & "</th>"
+msg1 = msg1 & "</tr>"
+
+msg1 = msg1 & "<tr>"
+msg1 = msg1 & "<td align='center'>"
+msg1 = msg1 & "Value1"
+msg1 = msg1 & "</td>"
+msg1 = msg1 & "<td align='center'>"
+msg1 = msg1 & "Value2"
+msg1 = msg1 & "</td>"
+msg1 = msg1 & "<td align='center'>"
+msg1 = msg1 & "Value3"
+msg1 = msg1 & "</td>"
+msg1 = msg1 & "</tr>"
+msg1 = msg1 & "</table></div>"
+
+
+On Error Resume Next
+
+With OutMail
+    .HTMLBody = msg1
+    .Display
+End With
+'SendKeys "^{ENTER}"
+On Error GoTo 0
+
+Set OutMail = Nothing
+Set OutApp = Nothing
+
+End Sub
