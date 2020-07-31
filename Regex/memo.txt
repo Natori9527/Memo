@@ -1,0 +1,8 @@
+Notepad++:
+maker_kigyo_cd → makerKigyoCd
+
+Search:_([a-z])
+Replace:\U$1
+
+\U for uppercase
+\L for lowercase
