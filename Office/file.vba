@@ -8,7 +8,7 @@ Sub main()
     Dim kinouNms As Variant
     kinouNms = Array("aaa", "bbb")
     
-    For idx = 1 To UBound(kinouNms)
+    For idx = 0 To UBound(kinouNms)
        Dim kinouPath As String
        kinouPath = rootDir & "\" & kinouNms(idx) & "\"
        
