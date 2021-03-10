@@ -1,3 +1,8 @@
+'Reference:
+'https://excelmacromastery.com/vba-arraylist/#Copying_from_an_VBA_ArrayList_to_an_Array
+'https://qiita.com/toru0408/items/ca1aa39fa5635a760170
+'https://stackoverflow.com/questions/39141525/retrieve-list-of-files-using-svn-revision-number
+
 Sub getLog()
     Dim sCmd As String
     Dim logStr As String
